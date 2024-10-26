@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Page</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <div class="container">
+        <h1 id="countryName">Country Name</h1>
+        <div id="imageGallery" class="image-gallery"></div>
+        <button onclick="goBack()">Back to Country Selection</button>
+    </div>
+
+    <script>
+        async function loadCountryData() {
+            const params = new URLSearchParams(window.location.search);
+            const countryCode = params.get("country");
+
+            if (!countryCode) {
+                document.getElementById("countryName").textContent = "Country not found";
+                return;
+            }
+
+            try {
+                const response = await fetch("countries.json");
+                const countries = await response.json();
+
+                const country = countries[countryCode];
+                if (!country) {
+                    document.getElementById("countryName").textContent = "Country not found";
+                    return;
+                }
+
+                // Update the page with country data
+                document.getElementById("countryName").textContent = country.name;
+
+                const gallery = document.getElementById("imageGallery");
+                gallery.innerHTML = "";  // Clear any existing images
+
+                country.images.forEach(imagePath => {
+                    const img = document.createElement("img");
+                    img.src = imagePath;
+                    img.alt = `${country.name} Image`;
+                    gallery.appendChild(img);
+                });
+            } catch (error) {
+                console.error("Error loading country data:", error);
+            }
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+        loadCountryData();
+    </script>
+</body>
+</html>

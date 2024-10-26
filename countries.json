@@ -1,0 +1,26 @@
+{
+    "france": {
+        "name": "France",
+        "images": [
+            "images/france1.jpg",
+            "images/france2.jpg",
+            "images/france3.jpg"
+        ]
+    },
+    "italy": {
+        "name": "Italy",
+        "images": [
+            "images/italy1.jpg",
+            "images/italy2.jpg",
+            "images/italy3.jpg"
+        ]
+    },
+    "japan": {
+        "name": "Japan",
+        "images": [
+            "images/japan1.jpg",
+            "images/japan2.jpg",
+            "images/japan3.jpg"
+        ]
+    }
+}
